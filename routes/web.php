@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[UserController::class, 'formRenovacio']);
+
+// User control
+Route::get('/renovacio', [UserController::class, 'formRenovacio']);
+Route::post('/renovacio/final',[UserController::class, 'renovacio'])->name('renovacio');

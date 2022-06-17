@@ -9,6 +9,14 @@ class Tutor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'dni',
+        'nom',
+        'cognoms',
+        'soci'
+    ];
+
+
     public function user() {
         return $this->belongsTo(User::class);
     }
