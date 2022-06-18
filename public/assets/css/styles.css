@@ -11,6 +11,9 @@ h1,h2,h3,h4,p {
     margin: 0;
     padding: 0;
 }
+a {
+    text-decoration: none;
+}
 
 /* Capçalera (no login) */
 header.capçalera {
@@ -27,7 +30,7 @@ header.capçalera img {
 /* Main content */
 .main-content {
     padding: 50px;
-    min-height: 90vh;
+    min-height: 75vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -80,7 +83,7 @@ h1.title {
     cursor:not-allowed;
     opacity: 0.8;
 }
-.renovacio-form {
+.renovacio-form, .acces-form {
     max-width: 500px;
 }
 .renovacio-menors {
@@ -92,6 +95,74 @@ h1.title {
 .error-message {
     color: rgb(206, 16, 16);
     font-size: 12px;
+}
+.content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Home page */
+.info-usuari {
+    width: 100%;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 30% auto 30% auto 30%;
+    grid-template-rows: 200px;
+}
+#info-cuota {
+    grid-column: 1;
+    grid-row: 1;
+}
+#info-colonies {
+    grid-column: 3;
+    grid-row: 1;
+}
+#info-esdeveniment {
+    grid-column: 5;
+    grid-row: 1;
+}
+@media screen and (max-width: 630px) {
+    .info-usuari {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 200px 20px 200px 20px 200px;
+    }
+    #info-cuota {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #info-colonies {
+        grid-column: 1;
+        grid-row: 3;
+    }
+    #info-esdeveniment {
+        grid-column: 1;
+        grid-row: 5;
+    }
+}
+  
+.info-card {
+    background-color:  rgb(177, 177, 177);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.pagat {
+    background-color: #98ffa5;
+}
+.no-pagat {
+    background-color: #ffbebe;
+}
+.logout {
+    color: #fff;
+    background-color: rgb(158, 0, 0);
+    width: 100%;
+    margin-top: 50px;
 }
 
 /* Footer */

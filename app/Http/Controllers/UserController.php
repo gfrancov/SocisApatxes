@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Tutor;
+use App\Models\Cuota;
 
 class UserController extends Controller
 {
@@ -58,6 +61,66 @@ class UserController extends Controller
             'message' => $message
         ));
 
+    }
+
+    public function formAcces() {
+
+        return view('login', array(
+            'title' => 'Accés'
+        ));
+
+    }
+
+    public function acces(Request $request) {
+
+        $dni = $request->input('dni');
+        $password = $request->input('contrasenya');
+
+        if(Auth::attempt(['dni' => $dni, 'password' => $password, 'inhabilitat' => 0])) {
+            return redirect()->to('/inici');
+        } else {
+            return back()->withErrors([
+                'message' => 'El soci no existeix o encara està sent validat.'
+            ]);
+        }
+
+    }
+
+    public function inici() {
+
+        if( auth()->check() ){
+
+            // Current year
+            $thisYear = date('Y');
+
+            // Get data
+            $getCuota = DB::table('cuotas')
+                ->where('soci', '=', auth()->user()->id )
+                ->where('any', '=', $thisYear)
+                ->get();
+
+            if(count($getCuota) == 0) {
+                $cuota = false;
+            } else {
+                $cuota = true;
+            }
+
+            return view('inici', array(
+                'title' => 'Inici',
+                'cuota' => $cuota
+            ));
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function sortir() {
+
+        auth()->logout();
+
+        return redirect()->to('/acces');
 
     }
     

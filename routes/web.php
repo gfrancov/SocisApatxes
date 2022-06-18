@@ -15,8 +15,12 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/',[UserController::class, 'formRenovacio']);
+Route::get('/',[UserController::class, 'formAcces']);
 
 // User control
 Route::get('/renovacio', [UserController::class, 'formRenovacio']);
-Route::post('/renovacio/final',[UserController::class, 'renovacio'])->name('renovacio');
+Route::post('/renovacio/fet',[UserController::class, 'renovacio'])->name('renovacio');
+Route::get('/acces', [UserController::class, 'formAcces']);
+Route::post('/acces/fet', [UserController::class, 'acces'])->name('acces');
+Route::get('/inici', [UserController::class, 'inici']);
+Route::get('/sortir', [UserController::class, 'sortir'])->name('sortir');
