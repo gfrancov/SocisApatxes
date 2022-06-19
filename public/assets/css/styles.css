@@ -7,11 +7,17 @@ body {
     min-height: 100vh;
     font-family: 'Inter';
 }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
 h1,h2,h3,h4,p {
     margin: 0;
     padding: 0;
 }
 a {
+    text-decoration: none;
+}
+a:hover {
     text-decoration: none;
 }
 
@@ -30,7 +36,7 @@ header.capçalera img {
 /* Main content */
 .main-content {
     padding: 50px;
-    min-height: 75vh;
+    min-height: 80vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -60,6 +66,8 @@ h1.title {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    border: none;
+    height: auto;
 }
 .form-control input, .form-control textarea {
     border: 1px solid #dbdbdb;
@@ -103,11 +111,19 @@ h1.title {
 }
 
 /* Home page */
+#alertes {
+    width: 90%;
+    margin: 20px;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    height: 20vh;
+}
 .info-usuari {
     width: 100%;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 30% auto 30% auto 30%;
+    grid-template-columns: 48% auto 48%;
     grid-template-rows: 200px;
 }
 #info-cuota {
@@ -118,16 +134,12 @@ h1.title {
     grid-column: 3;
     grid-row: 1;
 }
-#info-esdeveniment {
-    grid-column: 5;
-    grid-row: 1;
-}
 @media screen and (max-width: 630px) {
     .info-usuari {
         margin-top: 20px;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 200px 20px 200px 20px 200px;
+        grid-template-rows: 200px 20px 200px;
     }
     #info-cuota {
         grid-column: 1;
@@ -136,10 +148,6 @@ h1.title {
     #info-colonies {
         grid-column: 1;
         grid-row: 3;
-    }
-    #info-esdeveniment {
-        grid-column: 1;
-        grid-row: 5;
     }
 }
   
@@ -163,6 +171,66 @@ h1.title {
     background-color: rgb(158, 0, 0);
     width: 100%;
     margin-top: 50px;
+}
+.inici {
+    color: #fff;
+    background-color: #007e11;
+    width: 100%;
+    margin-top: 50px;
+}
+.logout:hover, .inici:hover {
+    color: #fff;
+}
+.panel-junta {
+    margin-top: 60px;
+    width: 100%;
+}
+.grid-junta {
+    width: 100%;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 48% auto 48%;
+    grid-template-rows: 200px;
+}
+#pagaments-cuotes {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: rgb(2, 105, 173);
+}
+#pagaments-colonies {
+    grid-column: 3;
+    grid-row: 1;
+    background-color: rgb(223, 148, 9);
+}
+@media screen and (max-width: 630px) {
+    .grid-junta {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 200px 20px 200px;
+    }
+    #pagaments-cuotes {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #pagaments-colonies {
+        grid-column: 1;
+        grid-row: 3;
+    }
+}
+.tasca-junta {
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+@media screen and (max-width: 630px) {
+    table .dni {
+        display: none;
+    }
 }
 
 /* Footer */
