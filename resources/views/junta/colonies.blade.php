@@ -1,7 +1,7 @@
 @include('includes.header')
 @include('includes.cabecera')
 <div class='main-content'>
-    <h1 class='titol'>Pagades</h1>
+    <h1 class='titol'>Colònies confirmades</h1>
     <table class='table'>
         <tr>
             <th class='dni'>DNI</th>
@@ -26,7 +26,8 @@
             <th class='dni'>DNI</th>
             <th>Nom</th>
             <th>Cognoms</th>
-            <th>Marcar</th>
+            <th>Confirmat</th>
+            <th>Pagat</th>
         </tr>
         @foreach ($noPagades as $usuariNoPagat)
 
@@ -34,7 +35,8 @@
                 <td class='dni'>{{$usuariNoPagat->dni}}</td>
                 <td class='nom'>{{$usuariNoPagat->nom}}</td>
                 <td class='cognoms'>{{$usuariNoPagat->cognoms}}</td>
-                <td class='marcar'><a class='btn btn-success' href='cuotes/pagada/{{$usuariNoPagat->id}}'>PAGAT</a></td>
+                <td class='confirmat'><a class='btn btn-danger' href='cuotes/pagada/{{$usuariNoPagat->id}}'>CONFIRMAT</a></td>
+                <td class='confirmat'><a class='btn btn-success' href='cuotes/pagada/{{$usuariNoPagat->id}}'>PAGAT</a></td>
             </tr>
             
         @endforeach

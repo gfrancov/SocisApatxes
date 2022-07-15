@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function cuota() {
         return $this->hasMany(Cuota::class);
     }
+
+    public function assistent() {
+        return $this->hasMany(Assistent::class);
+    }
 }

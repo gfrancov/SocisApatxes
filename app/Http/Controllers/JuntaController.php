@@ -34,7 +34,7 @@ class JuntaController extends Controller
                     ->get();
 
                 return view('junta.cuotes', array(
-                    'title' => 'Cuotes',
+                    'title' => 'Gestió Cuotes',
                     'pagades' => $cuotesPagades,
                     'noPagades' => $cuotesNoPagades
                 ));
@@ -62,6 +62,79 @@ class JuntaController extends Controller
 
                 return redirect()->to('/junta/cuotes');
 
+                
+            } else {
+                return redirect()->to('/inici');
+            }
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function eliminarCuota($idUsuari) {
+
+        if( auth()->check() ){
+
+            if( auth()->user()->membre == 'junta' ) {
+
+                DB::table('cuotas')->insert([
+                    'soci' => $idUsuari,
+                    'any' => date('Y')
+                ]);
+
+                return redirect()->to('/junta/cuotes');
+
+                
+            } else {
+                return redirect()->to('/inici');
+            }
+
+        } else {
+            return redirect()->to('/acces');
+        }
+        
+    }
+
+    public function colonies() {
+
+        if( auth()->check() ){
+
+            if( auth()->user()->membre == 'junta' ) {
+
+                // Current year
+                $thisYear = date('Y');
+
+                // Get data
+                $coloniesPagades = DB::table('esdeveniments')
+                    ->join('assistents', 'esdeveniments.id', '=', 'assistents.esdeveniment')
+                    ->join('users', 'users.id', '=', 'assistents.soci')
+                    ->where('esdeveniments.nom', '=', 'Colonies 2022')
+                    ->where('assistents.estatus', '=', 'confirmat')
+                    ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni', 'assistents.estatus')
+                    ->get();
+                
+                // Get data
+                $coloniesConfirmades = DB::table('esdeveniments')
+                ->join('assistents', 'esdeveniments.id', '=', 'assistents.esdeveniment')
+                ->join('users', 'users.id', '=', 'assistents.soci')
+                ->where('esdeveniments.nom', '=', 'Colonies 2022')
+                ->where('assistents.estatus', '=', 'pendent')
+                ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni', 'assistents.estatus')
+                ->get();
+                                
+                $coloniesNoPagades = DB::table('users')
+                    ->whereNotIn('users.id', DB::table('assistents')->select('soci') )
+                    ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni')
+                    ->get();
+
+                return view('junta.colonies', array(
+                    'title' => 'Gestió colonies',
+                    'pagades' => $coloniesPagades,
+                    'confirmades' => $coloniesConfirmades,
+                    'noPagades' => $coloniesNoPagades
+                ));
                 
             } else {
                 return redirect()->to('/inici');

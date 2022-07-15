@@ -24,11 +24,25 @@
                 <p>Encara no s'ha rebut la teva cuota de l'any {{ date('Y') }}.</p>
             </div>
         @endif
+        @if($colonies == 'denegat')
         <div class='info-card no-pagat' id='info-colonies'>
             <h1>❌</h1>
             <h2>Sense Colònies!</h2>
-            <p>Pel moment, no assistiràs a les colònies de l'any {{ date('Y') }}.</p>
+            <p>Pel moment, no assistiràs a les Colònies 2022.</p>
         </div>
+        @elseif($colonies == 'confirmat')
+        <div class='info-card pagat' id='info-colonies'>
+            <h1>✅</h1>
+            <h2>Colònies pagades!</h2>
+            <p>Ja s'ha rebut el teu pagament per les Colònies 2022.</p>
+        </div>
+        @else 
+        <div class='info-card pendent' id='info-colonies'>
+            <h1>⚠️</h1>
+            <h2>Pendent!</h2>
+            <p>T'has inscrit però falta el pagament de les Colònies 2022.</p>
+        </div>
+        @endif
     </div>
     @if( auth()->user()->membre == 'junta')
     <div class='panel-junta'>
@@ -41,7 +55,7 @@
                     <p>Gestiona els pagaments de cuotes.</p>
                 </div>
             </a>
-            <a href='#' class='tasca-junta' id='pagaments-colonies'>
+            <a href='{{route('junta.colonies')}}' class='tasca-junta' id='pagaments-colonies'>
                 <div class='tasca-junta'>
                     <h1>🏡</h1>
                     <h2>Colònies</h2>

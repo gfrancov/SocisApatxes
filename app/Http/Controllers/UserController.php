@@ -91,7 +91,7 @@ class UserController extends Controller
         if( auth()->check() ){
 
             // Current year
-            $thisYear = date('Y');
+            $thisYear = '2022';
 
             // Get data
             $getCuota = DB::table('cuotas')
@@ -105,9 +105,23 @@ class UserController extends Controller
                 $cuota = true;
             }
 
+            $getColonies = DB::table('esdeveniments')
+                ->join('assistents', 'assistents.esdeveniment', '=', 'esdeveniments.id')
+                ->join('users', 'assistents.soci', '=', 'users.id')
+                ->where('esdeveniments.nom', '=', 'Colonies 2022')
+                ->where('users.id', '=', auth()->user()->id )
+                ->get();
+
+            if( count($getColonies) == 0 ) {
+                $colonies = 'denegat';
+            } else {
+                $colonies = $getColonies[0]->estatus;
+            }
+
             return view('inici', array(
                 'title' => 'Inici',
-                'cuota' => $cuota
+                'cuota' => $cuota,
+                'colonies' => $colonies
             ));
 
         } else {

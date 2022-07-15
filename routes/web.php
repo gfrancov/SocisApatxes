@@ -28,3 +28,5 @@ Route::get('/sortir', [UserController::class, 'sortir'])->name('sortir');
 // Junta
 Route::get('/junta/cuotes', [JuntaController::class, 'cuotes'])->name('junta.cuotes');
 Route::get('/junta/cuotes/pagada/{cuota?}', [JuntaController::class, 'cuotaPagada']);
+Route::get('/junta/cuotes/eliminar/{cuota?}', [JuntaController::class, 'cuotaPagada']);
+Route::get('/junta/colonies', [JuntaController::class, 'colonies'])->name('junta.colonies');

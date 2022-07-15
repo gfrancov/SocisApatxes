@@ -15,6 +15,11 @@ class CreateAssistentsTable extends Migration
     {
         Schema::create('assistents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('esdeveniment');
+            $table->unsignedBigInteger('soci');
+            $table->string('estatus');
+            $table->foreign('esdeveniment')->references('id')->on('esdeveniments')->onDelete('cascade');
+            $table->foreign('soci')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

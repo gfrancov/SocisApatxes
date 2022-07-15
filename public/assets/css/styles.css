@@ -60,6 +60,10 @@ header.capçalera img {
 h1.title {
     line-height: 33px;
 }
+h1.titol {
+    width: 100%;
+    text-align: left;
+}
 
 /* Form control */
 .form-control {
@@ -160,6 +164,13 @@ h1.title {
     flex-direction: column;
     text-align: center;
 }
+.info-card h2 {
+    line-height: 26px;
+}
+.info-card p {
+    margin-top: 10px;
+    line-height: 16px;
+}
 .pagat {
     background-color: #98ffa5;
 }
@@ -174,7 +185,7 @@ h1.title {
 }
 .inici {
     color: #fff;
-    background-color: #007e11;
+    background-color: #00457e;
     width: 100%;
     margin-top: 50px;
 }
@@ -226,6 +237,22 @@ h1.title {
     align-items: center;
     flex-direction: column;
     text-align: center;
+}
+.tasca-junta h2 {
+    line-height: 26px;
+}
+.tasca-junta p {
+    margin-top: 10px;
+    line-height: 16px;
+}
+.table th {
+    background-color: rgb(150, 150, 150);
+}
+.table td,.table th{
+    border: 1px solid rgb(20, 20, 20);
+}
+.table {
+    border-collapse: collapse;
 }
 @media screen and (max-width: 630px) {
     table .dni {
