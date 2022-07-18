@@ -118,7 +118,7 @@ class UserController extends Controller
                 $colonies = $getColonies[0]->estatus;
             }
 
-            return view('inici', array(
+            return view('testModular', array(
                 'title' => 'Inici',
                 'cuota' => $cuota,
                 'colonies' => $colonies

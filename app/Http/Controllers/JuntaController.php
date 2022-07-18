@@ -73,6 +73,15 @@ class JuntaController extends Controller
 
     }
 
+    public function testBootstrap() {
+        return view('test');
+    }
+    public function testBootstrapModular() {
+        return view('testModular', array(
+            'title' => 'Inci'
+        ));
+    }
+
     public function eliminarCuota($idUsuari) {
 
         if( auth()->check() ){

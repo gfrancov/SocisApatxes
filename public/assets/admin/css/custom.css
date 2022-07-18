@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    font-family: 'Inter' !important;
+}
+
+/* Custom navbar */ 
+.navbar .navbar-menu-wrapper {
+    background: #007e11 !important;
+}
+.navbar .navbar-brand-wrapper {
+    background: #007e11 !important;
+}
+.navbar .navbar-brand-wrapper .navbar-brand img {
+    width: 170px;
+    height: auto;
+}
+.navbar .navbar-brand-wrapper .brand-logo-mini img {
+    width: 70px;
+}
+
+/* Icons */
+.apatxe-icon {
+    color: #fff;
+}
+
+/* Inici cuotes */
+.pagat {
+    background-color: rgb(160, 197, 159);
+    border: 1px solid green;
+}
+.pagat h3 {
+    font-family: 'Inter';
+    font-weight: 700;
+    color: rgb(3, 85, 3);
+}
+.nopagat {
+    background-color: rgb(236, 176, 176);
+    border: 1px solid red;
+}
+.nopagat h3 {
+    font-family: 'Inter';
+    font-weight: 700;
+    color: rgb(175, 6, 6);
+}
+
+/* Text formatat */
+h1 {
+    font-family: 'Inter';
+    font-weight: 800;
+    font-size: 30px;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 5px;
+}

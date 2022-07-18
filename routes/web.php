@@ -16,6 +16,8 @@ use App\Http\Controllers\JuntaController;
 */
 
 Route::get('/',[UserController::class, 'formAcces']);
+Route::get('/test',[JuntaController::class, 'testBootstrap']);
+Route::get('/modular',[JuntaController::class, 'testBootstrapModular']);
 
 // User control
 Route::get('/renovacio', [UserController::class, 'formRenovacio']);

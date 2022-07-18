@@ -15,33 +15,14 @@
             <div class='info-card pagat' id='info-cuota'>
                 <h1>✅</h1>
                 <h2>Cuota Pagada!</h2>
-                <p>S'ha rebut el pagament de la teva cuota de l'any {{ date('Y') }}.</p>
+                <p>S'ha rebut correctament el pagament de la teva cuota de l'any 2022.</p>
             </div>
         @else
             <div class='info-card no-pagat' id='info-cuota'>
                 <h1>❌</h1>
                 <h2>Cuota Sense Pagar!</h2>
-                <p>Encara no s'ha rebut la teva cuota de l'any {{ date('Y') }}.</p>
+                <p>Encara no s'ha rebut el pagament de la teva cuota de l'any 2022.<br/> Fes clic <a href='#'>aqui</a> per saber com fer el pagament de la quota.</p>
             </div>
-        @endif
-        @if($colonies == 'denegat')
-        <div class='info-card no-pagat' id='info-colonies'>
-            <h1>❌</h1>
-            <h2>Sense Colònies!</h2>
-            <p>Pel moment, no assistiràs a les Colònies 2022.</p>
-        </div>
-        @elseif($colonies == 'confirmat')
-        <div class='info-card pagat' id='info-colonies'>
-            <h1>✅</h1>
-            <h2>Colònies pagades!</h2>
-            <p>Ja s'ha rebut el teu pagament per les Colònies 2022.</p>
-        </div>
-        @else 
-        <div class='info-card pendent' id='info-colonies'>
-            <h1>⚠️</h1>
-            <h2>Pendent!</h2>
-            <p>T'has inscrit però falta el pagament de les Colònies 2022.</p>
-        </div>
         @endif
     </div>
     @if( auth()->user()->membre == 'junta')
