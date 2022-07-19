@@ -16,8 +16,6 @@ use App\Http\Controllers\JuntaController;
 */
 
 Route::get('/',[UserController::class, 'formAcces']);
-Route::get('/test',[JuntaController::class, 'testBootstrap']);
-Route::get('/modular',[JuntaController::class, 'testBootstrapModular']);
 
 // User control
 Route::get('/renovacio', [UserController::class, 'formRenovacio']);
@@ -26,9 +24,19 @@ Route::get('/acces', [UserController::class, 'formAcces']);
 Route::post('/acces/fet', [UserController::class, 'acces'])->name('acces');
 Route::get('/inici', [UserController::class, 'inici'])->name('inici');
 Route::get('/sortir', [UserController::class, 'sortir'])->name('sortir');
+Route::get('/construccio', [UserController::class, 'construccio'])->name('construccio');
+
+// Page seccions
+Route::get('/katalakaska', [UserController::class, 'pageKatalakaska'])->name('seccio.katalakaska');
+Route::get('/projectecoco', [UserController::class, 'pageProjecteCoco'])->name('seccio.projectecoco');
+Route::get('/kapomba', [UserController::class, 'pageKapomba'])->name('seccio.kapomba');
+
 
 // Junta
 Route::get('/junta/cuotes', [JuntaController::class, 'cuotes'])->name('junta.cuotes');
 Route::get('/junta/cuotes/pagada/{cuota?}', [JuntaController::class, 'cuotaPagada']);
-Route::get('/junta/cuotes/eliminar/{cuota?}', [JuntaController::class, 'cuotaPagada']);
 Route::get('/junta/colonies', [JuntaController::class, 'colonies'])->name('junta.colonies');
+Route::get('/junta/socis', [JuntaController::class, 'llistatSocis'])->name('junta.socis');
+Route::get('/junta/soci/{soci?}', [JuntaController::class, 'gestionarSoci']);
+Route::get('/junta/soci/activar/{soci?}', [JuntaController::class, 'activarSoci']);
+Route::get('/junta/soci/inhabilitar/{soci?}', [JuntaController::class, 'inhabilitarSoci']);

@@ -39,15 +39,6 @@ class User extends Authenticatable
         'password'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
     public function tutor() {
         return $this->hasOne(Tutor::class);
     }

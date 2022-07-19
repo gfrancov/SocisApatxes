@@ -19,7 +19,7 @@ class JuntaController extends Controller
             if( auth()->user()->membre == 'junta' ) {
 
                 // Current year
-                $thisYear = date('Y');
+                $thisYear = "2022";
 
                 // Get data
                 $cuotesPagades = DB::table('users')
@@ -33,7 +33,7 @@ class JuntaController extends Controller
                     ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni')
                     ->get();
 
-                return view('junta.cuotes', array(
+                return view('junta.socis.cuotes', array(
                     'title' => 'Gestió Cuotes',
                     'pagades' => $cuotesPagades,
                     'noPagades' => $cuotesNoPagades
@@ -55,94 +55,38 @@ class JuntaController extends Controller
 
             if( auth()->user()->membre == 'junta' ) {
 
-                DB::table('cuotas')->insert([
-                    'soci' => $idUsuari,
-                    'any' => date('Y')
-                ]);
-
-                return redirect()->to('/junta/cuotes');
-
-                
-            } else {
-                return redirect()->to('/inici');
-            }
-
-        } else {
-            return redirect()->to('/acces');
-        }
-
-    }
-
-    public function testBootstrap() {
-        return view('test');
-    }
-    public function testBootstrapModular() {
-        return view('testModular', array(
-            'title' => 'Inci'
-        ));
-    }
-
-    public function eliminarCuota($idUsuari) {
-
-        if( auth()->check() ){
-
-            if( auth()->user()->membre == 'junta' ) {
-
-                DB::table('cuotas')->insert([
-                    'soci' => $idUsuari,
-                    'any' => date('Y')
-                ]);
-
-                return redirect()->to('/junta/cuotes');
-
-                
-            } else {
-                return redirect()->to('/inici');
-            }
-
-        } else {
-            return redirect()->to('/acces');
-        }
-        
-    }
-
-    public function colonies() {
-
-        if( auth()->check() ){
-
-            if( auth()->user()->membre == 'junta' ) {
-
                 // Current year
-                $thisYear = date('Y');
+                $thisYear = "2022";
 
-                // Get data
-                $coloniesPagades = DB::table('esdeveniments')
-                    ->join('assistents', 'esdeveniments.id', '=', 'assistents.esdeveniment')
-                    ->join('users', 'users.id', '=', 'assistents.soci')
-                    ->where('esdeveniments.nom', '=', 'Colonies 2022')
-                    ->where('assistents.estatus', '=', 'confirmat')
-                    ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni', 'assistents.estatus')
-                    ->get();
+                DB::table('cuotas')->insert([
+                    'soci' => $idUsuari,
+                    'any' => $thisYear
+                ]);
+
+                return redirect()->to('/junta/cuotes');
+
                 
-                // Get data
-                $coloniesConfirmades = DB::table('esdeveniments')
-                ->join('assistents', 'esdeveniments.id', '=', 'assistents.esdeveniment')
-                ->join('users', 'users.id', '=', 'assistents.soci')
-                ->where('esdeveniments.nom', '=', 'Colonies 2022')
-                ->where('assistents.estatus', '=', 'pendent')
-                ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni', 'assistents.estatus')
-                ->get();
-                                
-                $coloniesNoPagades = DB::table('users')
-                    ->whereNotIn('users.id', DB::table('assistents')->select('soci') )
-                    ->select('users.id', 'users.nom', 'users.cognoms', 'users.dni')
-                    ->get();
+            } else {
+                return redirect()->to('/inici');
+            }
 
-                return view('junta.colonies', array(
-                    'title' => 'Gestió colonies',
-                    'pagades' => $coloniesPagades,
-                    'confirmades' => $coloniesConfirmades,
-                    'noPagades' => $coloniesNoPagades
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function llistatSocis() {
+
+                if( auth()->check() ){
+
+            if( auth()->user()->membre == 'junta' ) {
+
+                $allSocis = User::all();
+
+                return view('junta.socis.llistat', array(
+                    'title' => 'Llistat de socis',
+                    'socis' => $allSocis
                 ));
                 
             } else {
@@ -154,4 +98,76 @@ class JuntaController extends Controller
         }
 
     }
+
+    public function gestionarSoci($soci) {
+
+        if( auth()->check() ){
+
+            if( auth()->user()->membre == 'junta' ) {
+
+                $sociSelec = User::where('id', '=', $soci)->get();
+
+                return view('junta.socis.gestionarSoci', array(
+                    'title' => 'Gestionar Soci',
+                    'soci' => $sociSelec[0]
+                ));
+                
+            } else {
+                return redirect()->to('/inici');
+            }
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function activarSoci($idSoci) {
+
+        if( auth()->check() ){
+
+            if( auth()->user()->membre == 'junta' ) {
+
+                User::where('id', '=', $idSoci)->update(array(
+                    'inhabilitat' => 0
+                ));
+
+                return redirect()->to('/junta/socis');
+                
+            } else {
+                return redirect()->to('/inici');
+            }
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function inhabilitarSoci($idSoci) {
+
+        if( auth()->check() ){
+
+            if( auth()->user()->membre == 'junta' ) {
+
+                User::where('id', '=', $idSoci)->update(array(
+                    'inhabilitat' => 1
+                ));
+
+                return redirect()->to('/junta/socis');
+                
+            } else {
+                return redirect()->to('/inici');
+            }
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function actualitzarSoci($idSoci) {
+
+    }
+
 }

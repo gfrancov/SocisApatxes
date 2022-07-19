@@ -40,7 +40,7 @@ class UserController extends Controller
             'municipi' => $request->input('municipi'),
             'adreca' => $request->input('adreca'),
             'telefon' => $request->input('telefon'),
-            'membre' => $request->input('adreca')
+            'membre' => $request->input('membre')
         ]);
 
         // Saber si es menor
@@ -105,23 +105,9 @@ class UserController extends Controller
                 $cuota = true;
             }
 
-            $getColonies = DB::table('esdeveniments')
-                ->join('assistents', 'assistents.esdeveniment', '=', 'esdeveniments.id')
-                ->join('users', 'assistents.soci', '=', 'users.id')
-                ->where('esdeveniments.nom', '=', 'Colonies 2022')
-                ->where('users.id', '=', auth()->user()->id )
-                ->get();
-
-            if( count($getColonies) == 0 ) {
-                $colonies = 'denegat';
-            } else {
-                $colonies = $getColonies[0]->estatus;
-            }
-
-            return view('testModular', array(
+            return view('inici', array(
                 'title' => 'Inici',
-                'cuota' => $cuota,
-                'colonies' => $colonies
+                'cuota' => $cuota
             ));
 
         } else {
@@ -131,10 +117,63 @@ class UserController extends Controller
     }
 
     public function sortir() {
-
         auth()->logout();
-
         return redirect()->to('/acces');
+    }
+
+    public function pageKatalakaska() {
+
+        if( auth()->check() ){
+
+            return view('katalakaska', array(
+                'title' => 'Katalakaska'
+            ));
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function pageProjecteCoco() {
+
+        if( auth()->check() ){
+
+            return view('projectecoco', array(
+                'title' => 'Projecte Coco'
+            ));
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function pageKapomba() {
+
+        if( auth()->check() ){
+
+            return view('kapomba', array(
+                'title' => 'Kapomba'
+            ));
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+    }
+
+    public function construccio() {
+
+        if( auth()->check() ){
+
+            return view('construccio', array(
+                'title' => 'En construcció!'
+            ));
+
+        } else {
+            return redirect()->to('/acces');
+        }
 
     }
     

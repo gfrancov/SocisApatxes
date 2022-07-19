@@ -1,54 +1,63 @@
-@include('includes.header')
-@include('includes.cabecera')
-<div class='main-content'>
-    <div id='alertes'>
-       {{--  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>     --}}      
-    </div>
-    <h1 class='title'>Hola {{ auth()->user()->nom }}!</h1>
-    <div class="info-usuari">
-        @if($cuota) 
-            <div class='info-card pagat' id='info-cuota'>
-                <h1>✅</h1>
-                <h2>Cuota Pagada!</h2>
-                <p>S'ha rebut correctament el pagament de la teva cuota de l'any 2022.</p>
-            </div>
-        @else
-            <div class='info-card no-pagat' id='info-cuota'>
-                <h1>❌</h1>
-                <h2>Cuota Sense Pagar!</h2>
-                <p>Encara no s'ha rebut el pagament de la teva cuota de l'any 2022.<br/> Fes clic <a href='#'>aqui</a> per saber com fer el pagament de la quota.</p>
-            </div>
-        @endif
-    </div>
-    @if( auth()->user()->membre == 'junta')
-    <div class='panel-junta'>
-        <h1 class='title'>Junta directiva</h1>
-        <div class="grid-junta">
-            <a href='{{route('junta.cuotes')}}' class='tasca-junta' id='pagaments-cuotes'>
-                <div class='tasca-junta'>
-                    <h1>💵</h1>
-                    <h2>Pagaments de cuotes</h2>
-                    <p>Gestiona els pagaments de cuotes.</p>
+@include('includes.components.head')
+@include('includes.components.navbar')
+    <div class="container-fluid page-body-wrapper">
+      @include('includes.components.sidebar')
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h1 class="font-weight-bold mb-0">Hola {{ auth()->user()->nom }}!</h1>
                 </div>
-            </a>
-            <a href='{{route('junta.colonies')}}' class='tasca-junta' id='pagaments-colonies'>
-                <div class='tasca-junta'>
-                    <h1>🏡</h1>
-                    <h2>Colònies</h2>
-                    <p>Gestiona de socis/es a les colònies.</p>
+                <div>
+                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                      <i class="ti-clipboard btn-icon-prepend"></i>Les meves dades
+                    </button>
                 </div>
-            </a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+            @if($cuota)
+              <div class="card pagat">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left">Cuota</p>
+                  <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">PAGADA</h3>
+                    <i class="ti-check icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>  
+                  <p class="mb-0 mt-2">15€<span class="text-black ms-1"><small>rebuts correctament</small></span></p>
+                </div>
+              </div>
+            @else
+              <div class="card nopagat">
+                <div class="card-body">
+                  <p class="card-title text-md-center text-xl-left">Cuota</p>
+                  <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">PENDENT</h3>
+                    <i class="ti-close icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                  </div>  
+                  <p class="mb-0 mt-2 text-danger">15€ <span class="text-black ms-1"><small>encara no han sigut rebuts</small></span></p>
+                </div>
+              </div>
+            @endif
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title"><h1>Benvingut/da a la Gestió d'Usuaris</h1></p>
+                  <p>Benvingut/da {{ auth()->user()->nom }} al panell de gestió d'usuaris de l'Associació Sociocultural Districte Apatxe.</p>
+                  <p>Des d'aquest panell pots gestionar tota la teva vinculació amb l'associació i estar al día sobre tot allò que fa cadascuna de les nostres seccions per a que no et perdis res.</p>
+                  <p>Al menú trobaràs totes les opcions que pots realitzar al nostre web, com gestionar les teves dades personals, consultar projectes i estatuts o saber l'estada de la teva cuota o altres pagaments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    @endif
-    <a href="{{route('sortir')}}" class='logout info-card'>
-        <h1>🚪</h1>
-        <h3>Tancar sessió</h3>
-    </a>
-</div>
-@include('includes.footer')
+<!-- content-wrapper ends -->
+@include('includes.components.footer')

@@ -23,8 +23,14 @@ body {
 .apatxe-icon {
     color: #fff;
 }
+.badge-danger {
+    background-color: red;
+}
+.badge-success {
+    background-color: rgb(3, 107, 3);
+}
 
-/* Inici cuotes */
+/* Inici */
 .pagat {
     background-color: rgb(160, 197, 159);
     border: 1px solid green;
@@ -52,4 +58,9 @@ h1 {
     padding: 0;
     margin: 0;
     padding-bottom: 5px;
+}
+
+/* Cuotes */
+#pagades-taula, #nopagades-taula {
+    display: none;
 }
