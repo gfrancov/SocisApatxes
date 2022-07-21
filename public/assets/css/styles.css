@@ -236,6 +236,24 @@ h1.titol {
     }
 }
 
+/* Success */
+.success-text {
+    max-width: 550px;
+}
+.success-boto {
+    margin-top: 20px;
+    background-color: rgb(4, 109, 4);
+    color: #fff;
+    font-weight: 600;
+    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.success-boto:hover {
+    background-color: rgb(9, 138, 9);
+    color: #fff;
+}
+
 /* Footer */
 footer {
     bottom: 0;

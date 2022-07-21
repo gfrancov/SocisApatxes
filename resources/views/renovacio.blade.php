@@ -1,9 +1,11 @@
 @include('includes.header')
 @include('includes.cabecera')
 <div class='main-content'>
-    <h1 class='text-center title'>Digitalització de socis/es</h1>
+    <h1 class='text-center title'>Digitalització de socis/sòcies</h1>
     <p class='text-center mt-3'>Benvingut al pla de digitalització de sòcies i socis de l'ASC Districte Apatxe.
-    <br/>Si ja ets soci/a de l'ASC Districte Apatxe o vols formar part omple el següent formulari.</p>
+    <br/>Si ja ets soci/sòcia de l'ASC Districte Apatxe, omple el següent formulari.</p>
+    <p>&nbsp;</p>
+    <p class="text-center">Ves amb compte amb les dades introduïdes, el DNI (o NIE) i el correu electrònic no es <br/>podran modificar posteriorment, comprova que els has escrit correctament.</p>
     <form class="renovacio-form" id="renovacio-form" method='post' action='{{route('renovacio')}}'>
         @csrf
         <div class='form-control'>

@@ -25,6 +25,8 @@ Route::post('/acces/fet', [UserController::class, 'acces'])->name('acces');
 Route::get('/inici', [UserController::class, 'inici'])->name('inici');
 Route::get('/sortir', [UserController::class, 'sortir'])->name('sortir');
 Route::get('/construccio', [UserController::class, 'construccio'])->name('construccio');
+Route::get('/perfil', [UserController::class, 'perfil'])->name('perfil');
+Route::get('/test', [UserController::class, 'test'])->name('test');
 
 // Page seccions
 Route::get('/katalakaska', [UserController::class, 'pageKatalakaska'])->name('seccio.katalakaska');

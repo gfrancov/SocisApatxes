@@ -176,5 +176,31 @@ class UserController extends Controller
         }
 
     }
+
+    public function perfil() {
+
+        if( auth()->check() ){
+
+            $tevesDades = User::where('id', '=', auth()->user()->id)->get();
+
+            return view('perfil', array(
+                'title' => auth()->user()->nom . " " . auth()->user()->cognoms,
+                'soci' => $tevesDades[0]
+            ));
+
+        } else {
+            return redirect()->to('/acces');
+        }
+
+
+    }
+
+    public function test() {
+
+        return view('test', array(
+            'title' => 'XD'
+        ));
+
+    }
     
 }
